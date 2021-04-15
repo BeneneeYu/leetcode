@@ -30,5 +30,7 @@ public class kthsmallest {
         root.right.left = null;
         root.right.right = null;
         System.out.println(kthSmallest(root,1));
+      System.out.println("哈哈");
+      System.out.println("abc".contains(""));
     }
 }
