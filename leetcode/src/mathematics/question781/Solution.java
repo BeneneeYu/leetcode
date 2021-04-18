@@ -1,5 +1,7 @@
 package mathematics.question781;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,11 +61,18 @@ public class Solution {
         return ans;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Solution s = new Solution();
         System.out.println(s.numRabbits(new int[]{1, 1, 2}));
         System.out.println(s.numRabbits(new int[]{10, 10, 10}));
         System.out.println(s.numRabbits(new int[]{1,0,1,0,0}));
-
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        Thread.sleep(1000);
+        Date date2 = new Date();
+        System.out.println(date.after(date));
+        System.out.println(date2.after(date));
+        System.out.println(date);
+        System.out.println(date2);
     }
 }
