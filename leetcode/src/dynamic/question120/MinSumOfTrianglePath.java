@@ -1,4 +1,4 @@
-package dynamic.Question120;
+package dynamic.question120;
 
 import java.util.List;
 

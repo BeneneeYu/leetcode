@@ -1,4 +1,4 @@
-package dynamic.Question198;
+package dynamic.question198;
 
 public class rob {
     public static int rob(int[] nums,int start,int end) {
