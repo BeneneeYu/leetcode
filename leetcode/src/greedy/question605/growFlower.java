@@ -1,4 +1,4 @@
-package greedy.Question605;
+package greedy.question605;
 
 public class growFlower {
 //    public boolean canPlaceFlowers(int[] flowerbed, int n) {

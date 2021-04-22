@@ -1,6 +1,4 @@
-package linkedlist.Question24;
-
-import linkedlist.Question24.ListNode;
+package linkedlist.question24;
 
 /**
  * @program: Leetcode

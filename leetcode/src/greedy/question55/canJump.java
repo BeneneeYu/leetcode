@@ -1,4 +1,4 @@
-package greedy.Question55;
+package greedy.question55;
 
 //public class canJump2 {
 //    public boolean canJump(int[] nums) {

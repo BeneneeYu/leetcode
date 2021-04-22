@@ -1,4 +1,4 @@
-package greedy.Question376;
+package greedy.question376;
 
 public class swingSequence {
     public int wiggleMaxLength(int[] nums) {

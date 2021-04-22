@@ -1,4 +1,4 @@
-package linkedlist.Question24;
+package linkedlist.question24;
 
 
  public class ListNode {

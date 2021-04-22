@@ -1,4 +1,4 @@
-package greedy.Question435;
+package greedy.question435;
 
 import java.util.Arrays;
 import java.util.Comparator;

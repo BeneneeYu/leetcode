@@ -1,4 +1,4 @@
-package greedy.Question455;
+package greedy.question455;
 
 import java.util.Arrays;
 
