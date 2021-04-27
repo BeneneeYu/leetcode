@@ -1,4 +1,4 @@
-package tree.Question111;
+package tree.question111;
 import java.util.LinkedList;
 
 public class minDepth {
