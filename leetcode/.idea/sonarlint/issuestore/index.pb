@@ -41,3 +41,13 @@ Y
 )src/slidingWindow/question3/Solution.java,0\a\0a5f1c051345d015cc63e25ea0ce3acc7e214aec
 U
 %src/dynamic/question849/Solution.java,4\9\49c4b30a105b4598035e2a89a88dcdd597808caa
+Q
+!src/str/question290/Solution.java,6\1\61830781a62e29d85cd6bc031cd857b4a34fbe03
+Q
+!src/str/question205/Solution.java,f\7\f7ed94f93f9d67aee787e71dd529cda38fb52179
+X
+(src/singleScan/question605/Solution.java,d\4\d4d107af7272de3df17f6a3aad41d3eb7714eeae
+X
+(src/linkedlist/question142/ListNode.java,e\a\eaecd28c63ee3ac511a73593fd0fa16135508cfc
+X
+(src/linkedlist/question142/Solution.java,8\1\81c311f1789011da355cba8b5929d2da290fc6e5

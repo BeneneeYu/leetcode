@@ -1,16 +1,16 @@
 
-U	java:S106J"9Replace this use of System.out or System.err by a logger.(÷×ê‡8ÁžË•Ž/
 I
 java:S1481E"'Remove this unused "df" local variable.(—ò–Œüÿÿÿÿ8é¥Ê•Ž/
-U	java:S106D"9Replace this use of System.out or System.err by a logger.(ÅÚÌ»8‹à§ß‰/
-U	java:S106I"9Replace this use of System.out or System.err by a logger.(œÅ»Œ8é¥Ê•Ž/
-Z	java:S106B"9Replace this use of System.out or System.err by a logger.(¯šöÊþÿÿÿÿ8Æ¤£ß‰/
-X
-java:S1854E"6Remove this useless assignment to local variable "df".(—ò–Œüÿÿÿÿ8é¥Ê•Ž/
 U	java:S106C"9Replace this use of System.out or System.err by a logger.(Ø ð½8š‹¥ß‰/
-<
-java:S16597"Declare "x" on a separate line.(ÅŽÃÎ8Ï¿²ß‰/
 U	java:S106K"9Replace this use of System.out or System.err by a logger.(²¨ç÷8®úÌ•Ž/
 {
 java:S22931"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿý‘Ñÿÿÿÿÿ8Ï¿²ß‰/
+<
+java:S16597"Declare "x" on a separate line.(ÅŽÃÎ8Ï¿²ß‰/
 U	java:S106L"9Replace this use of System.out or System.err by a logger.(¢°´8®úÌ•Ž/
+X
+java:S1854E"6Remove this useless assignment to local variable "df".(—ò–Œüÿÿÿÿ8é¥Ê•Ž/
+U	java:S106J"9Replace this use of System.out or System.err by a logger.(÷×ê‡8ÁžË•Ž/
+U	java:S106D"9Replace this use of System.out or System.err by a logger.(ÅÚÌ»8‹à§ß‰/
+U	java:S106I"9Replace this use of System.out or System.err by a logger.(œÅ»Œ8é¥Ê•Ž/
+Z	java:S106B"9Replace this use of System.out or System.err by a logger.(¯šöÊþÿÿÿÿ8Æ¤£ß‰/
