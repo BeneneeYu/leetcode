@@ -13,14 +13,14 @@ public class Solution {
         for (int pile : piles) {
             maxSpeed = Math.max(maxSpeed, pile);
         }
-        while (minSpeed < maxSpeed) {
+        while (minSpeed < maxSpeed) { // end condition
             int midSpeed = (minSpeed + maxSpeed) / 2;
             int cntHour = 0;
             for (int pile : piles) {
                 cntHour += Math.ceil((double) pile / midSpeed);
             }
             if (cntHour > h){ // eat too slow
-                minSpeed = midSpeed + 1;
+                minSpeed = midSpeed + 1; // left side ++
             }else{
                 maxSpeed = midSpeed;
             }

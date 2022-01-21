@@ -51,3 +51,5 @@ X
 (src/linkedlist/question142/ListNode.java,e\a\eaecd28c63ee3ac511a73593fd0fa16135508cfc
 X
 (src/linkedlist/question142/Solution.java,8\1\81c311f1789011da355cba8b5929d2da290fc6e5
+Z
+*src/binarySearch/question875/Solution.java,c\d\cd1256d12d3158dcdb5c30a2126f25219a58f125
