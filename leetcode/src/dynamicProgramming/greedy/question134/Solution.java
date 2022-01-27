@@ -1,4 +1,4 @@
-package greedy.question134;
+package dynamicProgramming.greedy.question134;
 
 /**
  * @program: leetcode

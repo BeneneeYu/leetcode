@@ -1,4 +1,4 @@
-package dynamicProgramming.question91;
+package dynamicProgramming.others.question91;
 
 public class Solution {
   public int numDecodings(String s) {
