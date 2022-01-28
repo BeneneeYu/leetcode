@@ -1,6 +1,8 @@
 package dataStructure.linkedList.question36JZoffer;
 
 
+import dataStructure.linkedList.ListNode;
+
 /**
  * @program: Leetcode
  * @description:

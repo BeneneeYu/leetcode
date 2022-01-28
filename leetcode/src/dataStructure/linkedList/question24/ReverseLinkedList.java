@@ -1,5 +1,7 @@
 package dataStructure.linkedList.question24;
 
+import dataStructure.linkedList.ListNode;
+
 /**
  * @program: Leetcode
  * @description:
