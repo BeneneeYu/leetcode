@@ -10,3 +10,10 @@
    - 添加最近使用过的元素addRecently（原map中不存在该键值对，新元素）
    - 删除某个key对应的元素
    - 删除最久未使用过的元素 2.中的方法也可以直接在get和put方法中实现，可以减少部分冗余
+
+Map<Integer, DLinkedNode> cache is designed to save the key-value mapping from Integer key to node in double linked list, so that when 'put' and 'get', we can complete the operations in O(N) time.
+
+DLinkedNode head, tail are dummy nodes, they record the head and tail and enable the program to operate all the nodes in the linked list. It enables the replacement because we can not memorize the access sequence in map.
+
+
+

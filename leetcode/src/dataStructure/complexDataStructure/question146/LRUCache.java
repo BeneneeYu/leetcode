@@ -56,12 +56,12 @@ class LRUCache {
     }
 
     public void put(int key, int value) {
-        if (cache.containsKey(key)){
+        if (cache.containsKey(key)) {
             DLinkedNode node = cache.get(key);
             node.value = value;
             moveToHead(node);
-        }else{
-            if (size >= capacity){
+        } else {
+            if (size >= capacity) {
                 cache.remove(getActualTail().key);
                 deleteTail();
                 size--;
@@ -73,24 +73,27 @@ class LRUCache {
         }
     }
 
-    public void addToHead(DLinkedNode node){
+    public void addToHead(DLinkedNode node) {
         node.prev = head;
         head.next.prev = node;
         node.next = head.next;
         head.next = node;
     }
-    public void deleteNode(DLinkedNode node){
+
+    public void deleteNode(DLinkedNode node) {
         node.prev.next = node.next;
         node.next.prev = node.prev;
     }
 
-    public DLinkedNode getActualTail(){
+    public DLinkedNode getActualTail() {
         return tail.prev;
     }
-    public void deleteTail(){
+
+    public void deleteTail() {
         deleteNode(tail.prev);
     }
-    public void moveToHead(DLinkedNode node){
+
+    public void moveToHead(DLinkedNode node) {
         deleteNode(node);
         addToHead(node);
     }
