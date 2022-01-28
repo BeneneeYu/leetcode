@@ -1,4 +1,4 @@
-package array.question152;
+package dynamicProgramming.array.question152;
 
 import java.util.Arrays;
 import java.util.Scanner;

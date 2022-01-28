@@ -1,4 +1,4 @@
-package array.question421;
+package dataStructure.trie.question421;
 
 /**
  * @program: leetcode

@@ -1,4 +1,4 @@
-package array.question152;
+package dynamicProgramming.array.question152;
 
 public class maximumProductSequence {
     public int maxProduct(int[] nums) {

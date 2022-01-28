@@ -1,4 +1,4 @@
-package sorting.question1291;
+package sorting.array.question1291;
 
 import java.util.ArrayList;
 import java.util.List;
