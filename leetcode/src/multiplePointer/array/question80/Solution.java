@@ -3,9 +3,9 @@ package multiplePointer.array.question80;
 /**
  * @program: leetcode
  * @description:给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 最多出现两次 ，返回删除后数组的新长度。
- *
+ * <p>
  * 不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
- *nums[fast]是第一个待检查的元素，nums[slow-1]是上一个应该被保留的元素所移动到的指定位置
+ * nums[fast]是第一个待检查的元素，nums[slow-1]是上一个应该被保留的元素所移动到的指定位置
  *  
  * @author: Shen Zhengyu
  * @create: 2021-04-06 15:15
@@ -31,6 +31,22 @@ public class Solution {
             fast++;
         }
         return slow;
+    }
+
+
+    public int removeDuplicates1(int[] nums) {
+        int len = nums.length;
+        if (len <= 2) return len;
+        int validPtr = 2;
+        int detectPtr = 2;
+        while (detectPtr < len) {
+            if (nums[detectPtr] != nums[validPtr - 2]) { // non-decreasing order
+                nums[validPtr] = nums[detectPtr];
+                validPtr++;
+            }
+            detectPtr++;
+        }
+        return validPtr;
     }
 
     public static void main(String[] args) {
