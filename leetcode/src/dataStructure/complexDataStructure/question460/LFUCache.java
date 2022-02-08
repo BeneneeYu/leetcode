@@ -1,6 +1,5 @@
 package dataStructure.complexDataStructure.question460;
 
-import dataStructure.complexDataStructure.question146.LRUCache;
 
 import java.util.HashMap;
 
