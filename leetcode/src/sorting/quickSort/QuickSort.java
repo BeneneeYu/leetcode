@@ -1,5 +1,7 @@
 package sorting.quickSort;
 
+import java.util.Arrays;
+
 /**
  * @program: leetcode
  * @description:
@@ -11,9 +13,7 @@ public class QuickSort {
         QuickSort q = new QuickSort();
         int[] nums = new int[]{1, 3, 222, 4, 12312, 19248, -33, 1213, 4283, 999, 4123, 44, 5, 2123123123, 423, 4123123, 88};
         q.quickSort(nums, 0, nums.length - 1);
-        for (int a : nums) {
-            System.out.print(a + " ");
-        }
+        System.out.println(Arrays.toString(nums));
     }
 
     public int[] quickSort(int[] nums, int left, int right) {
