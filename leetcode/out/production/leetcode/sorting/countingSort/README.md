@@ -10,4 +10,5 @@ The needed time and space increase with the expanding data range. A better solut
 
 1. Find the biggest and smallest elements in an unsorted array.
 2. Count the times of every element i appears, save it to the `array[i]`
+3. Place every element `i` `array[i]` times in array.
 
