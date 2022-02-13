@@ -28,7 +28,7 @@ public class Solution {
         }
         path.offerLast(root.val);
         targetSum -= root.val;
-        if (null == root.left && null == root.right && targetSum == 0){
+        if (null == root.left && null == root.right && targetSum == 0) {
             resultList.add(new LinkedList<>(path));
         }
         dfs(root.left, targetSum);

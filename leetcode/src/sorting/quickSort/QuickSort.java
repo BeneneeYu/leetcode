@@ -8,53 +8,41 @@ package sorting.quickSort;
  **/
 public class QuickSort {
     public static void main(String[] args) {
-        int[] num = new int[]{1,3,222,4,12312,19248,-33,1213,4283,999,4123,44,5,2123123123,423,4123123,88};
-        for(int a:quickSort(num, 0, num.length-1)) {
-            System.out.print(a+" ");
+        QuickSort q = new QuickSort();
+        int[] nums = new int[]{1, 3, 222, 4, 12312, 19248, -33, 1213, 4283, 999, 4123, 44, 5, 2123123123, 423, 4123123, 88};
+        q.quickSort(nums, 0, nums.length - 1);
+        for (int a : nums) {
+            System.out.print(a + " ");
         }
     }
-    public static int[] quickSort(int[] num, int leftPos, int rightPos) {
-        if(rightPos < leftPos)
-            return num;
-        else {
-            //将数列最左边第一个数字作为基准数
-            int initLeftPos = leftPos;
-            int initRightPos = rightPos;
-            int baseNum = num[leftPos];
 
-            while(rightPos > leftPos) {
-                //第二步：右边指针找到小于基准数的就停下
-                while(num[rightPos] >= baseNum & rightPos > leftPos) {
-                    rightPos--;
-                }
+    public int[] quickSort(int[] nums, int left, int right) {
+        if (left < right){
+            int partitionIndex = partition(nums, left, right);
+            quickSort(nums, left, partitionIndex - 1);
+            quickSort(nums, partitionIndex + 1, right);
+        }
+        return nums;
+    }
 
-                //第二步：左边指针找到大于基准数的就停下
-                while(num[leftPos] <= baseNum & rightPos > leftPos) {
-                    leftPos++;
-                }
-
-                //交换两个指针最终标记的数字
-                if(rightPos > leftPos)
-                    swap(num,leftPos,rightPos);
+    public int partition(int[] nums, int left, int right){
+        int pivot = left;
+        int curIndex = pivot + 1; // elements before curIndex are definitely smaller than nums[pivot]
+        for (int i = curIndex; i <= right; i++) {
+            if (nums[i] < nums[pivot]){
+                swap(nums, i, curIndex);
+                curIndex += 1;
             }
-
-            //当左右两边指针重合时，将基准数与指针指向数字交换
-            swap(num,leftPos,initLeftPos);
-
-            //指针左半边递归，以进来的数组的左边为界，右边是左右指针相同时左边一个
-            quickSort(num, initLeftPos, leftPos-1);
-
-            //右边同理
-            quickSort(num, rightPos+1, initRightPos);
-
-            return num;
         }
+        swap(nums, pivot, curIndex - 1); // select nums[curIndex - 1], which is smaller, to swap, so that nums[curIndex - 1] is a partitionIndex
+        return curIndex - 1;
     }
 
-    //swap方法：将数组中leftPos和rightPos上的两个数值进行交换
-    public static void swap(int[] num,int leftPos,int rightPos) {
-        int temp = num[leftPos];
-        num[leftPos] = num[rightPos];
-        num[rightPos] = temp;
+    // swap
+    public void swap(int[] num, int left, int right) {
+        if (left == right) return;
+        int temp = num[left];
+        num[left] = num[right];
+        num[right] = temp;
     }
 }

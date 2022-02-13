@@ -58,13 +58,13 @@ public class Solution {
             timeOfChar2[r]++;
             if (timeOfChar1[r] == timeOfChar2[r]) {
                 diff--;
-            }else if (timeOfChar2[r] - 1 == timeOfChar1[r]){ // switch from same number
+            } else if (timeOfChar2[r] - 1 == timeOfChar1[r]) { // switch from same number
                 diff++;
             }
             timeOfChar2[l]--;
             if (timeOfChar2[l] == timeOfChar1[l]) {
                 diff--;
-            }else if (timeOfChar2[l] + 1 == timeOfChar1[l]){ // switch from same number
+            } else if (timeOfChar2[l] + 1 == timeOfChar1[l]) { // switch from same number
                 diff++;
             }
         }
