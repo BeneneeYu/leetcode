@@ -18,7 +18,9 @@ The base of merge sort is divide and conquer. Top-down recursion is an easy way 
 2. Sort the two sub lists separately.
 3. Merge the two sorted sub lists.
 
-The termination condition of recursion is the number of nodes in list is less than or equal to one, when the list can no
+The termination condition of recursion is the number of nodes in list is less than or equal to one, when the list can not be splited.
+
+The ultimate step is to split into independent `size(list)` nodes and sort them by pair and continue.
 
 ## Bottom-up Merge Sort
 

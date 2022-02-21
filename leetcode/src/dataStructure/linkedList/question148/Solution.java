@@ -19,7 +19,7 @@ class Solution {
         }
         if (head.next == tail) {
             head.next = null; // prepare for merge, [mid, tail)
-            return head;
+            return head; // head.next is in the other sub list, avoid duplication
         }
         ListNode slow = head, fast = head;
         while (fast != tail) {
