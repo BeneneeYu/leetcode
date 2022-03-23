@@ -1,4 +1,4 @@
-package divideAndConquer.voting.question169;
+package sorting.array.question169;
 
 /**
  * @program: leetcode
