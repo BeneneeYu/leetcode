@@ -37,7 +37,6 @@ class LRUCache {
     // Construct the double linked list that enables the replacement.
     private DLinkedNode head, tail;
 
-
     public LRUCache(int capacity) {
         this.size = 0;
         this.capacity = capacity;
