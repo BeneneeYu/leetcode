@@ -28,14 +28,8 @@ Note that the second line is also left-justified becase it contains only one wor
 
 # Ideas
 
-We start with left being the first word.
-
-findRight: Then we greedily try to go as far right as possible until we fill our current line.
-
-Then we justify one line at a time.
-
-justify: In all cases we pad the right side with spaces until we reach max width for the line;
-
-1. If it's one word then it is easy, the result is just that word.
-2. If it's the last line then the result is all words separated by a single space.
-3. Otherwise we calculate the size of each space evenly and if there is a remainder we distribute an extra space until it is gone.
+1. Start a line with the first word `left`, and find an appropriate word `right` as the last word in this line. Method findRight() is to greedily try to go as far right as possible until we fill our current line.
+2. After we make sure the words we will use in a line, we can justify the format.
+   1. If it's one word, the result is just that word.
+   2. If it's the last line then the result is all words separated by a single space.
+   3. Otherwise we calculate the size of each space evenly and if there is a remainder we distribute an extra space until it is zero.
