@@ -1,5 +1,7 @@
 package dfs.binaryTree.question938;
 
+import dfs.binaryTree.TreeNode;
+
 public class Solution {
   public int rangeSumBST(TreeNode root, int low, int high) {
     int sum = 0;

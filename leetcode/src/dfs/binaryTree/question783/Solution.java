@@ -1,27 +1,29 @@
 package dfs.binaryTree.question783;
 
-class Solution {
-  int pre;
-  int ans;
+import dfs.binaryTree.TreeNode;
 
-  public int minDiffInBST(TreeNode root) {
-    ans = Integer.MAX_VALUE;
-    pre = -1;
-    dfs(root);
-    return ans;
-  }
-
-  public void dfs(TreeNode root) {
-    if (root == null) {
-      return;
+/**
+ * @program: Leetcode
+ * @description:
+ * @author: Shen Zhengyu
+ * @create: 2022-04-15 10:02
+ **/
+public class Solution {
+    Integer res = Integer.MAX_VALUE;
+    Integer pre = null;
+    public int minDiffInBST(TreeNode root) {
+        if (null != root.left){
+            minDiffInBST(root.left);
+        }
+        // pre is the value of left child node
+        // or root is the right child node
+        if (null != pre){
+            res = Integer.min(res, root.val - pre);
+        }
+        pre = root.val;
+        if (null != root.right){
+            minDiffInBST(root.right);
+        }
+        return res;
     }
-    dfs(root.left);
-    if (pre == -1) {
-      pre = root.val;
-    } else {
-      ans = Math.min(ans, root.val - pre);
-      pre = root.val;
-    }
-    dfs(root.right);
-  }
 }
