@@ -1,5 +1,7 @@
 package dfs.binaryTree.question1305;
 
+import dfs.binaryTree.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
