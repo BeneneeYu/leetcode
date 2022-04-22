@@ -1,4 +1,4 @@
-package dfs.binaryTree.question230;
+package binaryTreeAndRecursion.iterator.question230;
 
 import dfs.binaryTree.TreeNode;
 
@@ -48,7 +48,7 @@ public class Solution {
 
     public int kthSmallest_iterative(TreeNode root, int k) {
         LinkedList<TreeNode> stack = new LinkedList<>();
-        while (true) {
+        while (root != null || !stack.isEmpty()) {
             // inorder(node.left)
             while (null != root) {
                 stack.push(root);
@@ -61,5 +61,6 @@ public class Solution {
             // inorder(node.left)
             root = root.right;
         }
+        return root.val;
     }
 }
