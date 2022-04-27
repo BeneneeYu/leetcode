@@ -40,7 +40,7 @@ public class Solution {
         }
         return mstCost;
     }
-    
+
 
     private int getManhattanDistance(int[] x, int[] y) {
         return Math.abs(x[0] - y[0]) + Math.abs(x[1] - y[1]);
