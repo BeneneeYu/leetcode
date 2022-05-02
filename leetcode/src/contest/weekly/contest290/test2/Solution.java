@@ -1,4 +1,4 @@
-package daily.test2;
+package contest.weekly.contest290.test2;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;

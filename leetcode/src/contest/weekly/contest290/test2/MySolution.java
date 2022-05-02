@@ -1,4 +1,4 @@
-package daily.test2;
+package contest.weekly.contest290.test2;
 
 /**
  * @program: Leetcode
