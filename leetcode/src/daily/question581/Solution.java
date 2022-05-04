@@ -25,3 +25,4 @@ public class Solution {
         return high > low ? high - low + 1:0;
     }
 }
+
