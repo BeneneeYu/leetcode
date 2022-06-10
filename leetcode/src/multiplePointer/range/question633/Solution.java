@@ -1,32 +1,27 @@
 package multiplePointer.range.question633;
-/*
-给定一个非负整数 c ，你要判断是否存在两个整数 a 和 b，使得 a2 + b2 = c 。
- */
+
+/**
+ * @program: Leetcode
+ * @description: Given a non-negative integer c, decide whether there're two integers a and b such that a^2 + b^2 = c.
+ * @author: Shen Zhengyu
+ * @create: 2022-06-10 12:12
+ **/
 public class Solution {
-  public boolean judgeSquareSum(int c) {
-    int a = 0;
-    int b = (int)Math.sqrt(c) + 1;
-    while (a <= b){
-      int sum = a*a + b*b;
-      if (sum == c){
-        return true;
-      }else if (sum > c){
-        b--;
-      }else{
-        a++;
-      }
+    public boolean judgeSquareSum(int c) {
+        // the answer is [0, a, b, sqrt(c)]
+        int a = 0;
+        int b = (int)Math.sqrt(c);
+        while (a <= b){
+            // there is a case that: integer overflow when judging
+            int tmp = a * a + b * b;
+            if (tmp < 0) b -= 1; // handle the overflow case
+            if (tmp == c) return true;
+            if (tmp > c){
+                b -= 1;
+            }else{
+                a += 1;
+            }
+        }
+        return false;
     }
-    return false;
-  }
-/*
-  为什么这是正确的？可以把它看作一个矩阵搜索的过程
-  格子在搜索过程中只有两种行为：
-搜索过程中：
-小于 c ：左边的元素都小于当前元素，只能下移，相当于low++。此时排除的是黄色格子以及左边同行的元素，都小于 cc ，所以不会错过正确答案。
-大于 c ：下面的元素都大于当前元素，只能左移，相当于high--。此时排除的是黄色格子以及下方同列的元素，都大于 cc ，所以不会错过正确答案。
-
- */
-  public static void main(String[] args) {
-
-  }
 }

@@ -26,8 +26,8 @@ public class Solution {
         }
         int head = 0;
         int tail = len - 1;
-        while (tail < s.length() - 1){
-            if (checkEmpty(cnt)){
+        while (tail < s.length() - 1) {
+            if (checkEmpty(cnt)) {
                 resultList.add(head);
             }
             cnt[sChar[head] - 'a'] += 1;
@@ -35,15 +35,15 @@ public class Solution {
             tail++;
             cnt[sChar[tail] - 'a'] -= 1;
         }
-        if (checkEmpty(cnt)){
+        if (checkEmpty(cnt)) {
             resultList.add(head);
         }
         return resultList;
     }
 
-    public boolean checkEmpty(int[] array){
+    public boolean checkEmpty(int[] array) {
         for (int i : array) {
-            if (i != 0){
+            if (i != 0) {
                 return false;
             }
         }
