@@ -1,62 +1,36 @@
 package multiplePointer.array.question88;
 
-import java.util.Arrays;
-
 /**
- * @program: leetcode
- * @description:给你两个有序整数数组 nums1 和 nums2，请你将 nums2 合并到 nums1 中，使 nums1 成为一个有序数组。
+ * @program: Leetcode
+ * @description: You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+ * Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+ * Output: [1,2,2,3,5,6]
  * @author: Shen Zhengyu
- * @create: 2021-04-05 15:29
+ * @create: 2022-06-11 20:22
  **/
 public class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int tmp[] = new int[nums1.length];
-        int p1 = 0;
-        int p2 = 0;
-        int p3 = 0;
-        if (n == 0){
+        if (n == 0) return;
+        if (m == 0) {
+            System.arraycopy(nums2, 0, nums1, 0, n);
             return;
         }
-        while (p3 < nums1.length){
-            while (p1 < m && ( p2 == n || nums1[p1] <= nums2[p2])){
-                tmp[p3] = nums1[p1];
-                p1++;
-                p3++;
-            }
-            while (p2 < n && (p1 == m || nums2[p2] <= nums1[p1])){
-                tmp[p3] = nums2[p2];
-                p2++;
-                p3++;
-            }
-        }
-
-        System.arraycopy(tmp,0,nums1,0,tmp.length);
-    }
-    public void tailMerge(int[] nums1, int m, int[] nums2, int n) {
-        int p1 = m - 1;
-        int p2 = n - 1;
-        int p3 = m + n - 1;
-        while (p3 >= 0){
-            while (p1 >= 0 && (p2 == -1 || nums1[p1] >= nums2[p2])){
-                nums1[p3] = nums1[p1];
-                p3--;
-                p1--;
-            }
-            while (p2 >= 0 && (p1 == -1 || nums2[p2] >= nums1[p1])){
-                nums1[p3] = nums2[p2];
-                p3--;
-                p2--;
+        int resPtr = m + n - 1;
+        int ptr1 = m - 1;
+        int ptr2 = n - 1;
+        // from back to front
+        while (ptr1 >= 0 || ptr2 >= 0) {
+            if (ptr1 == -1) {
+                nums1[resPtr--] = nums2[ptr2--];
+            } else if (ptr2 == -1) {
+                nums1[resPtr--] = nums1[ptr1--];
+            } else {
+                if (nums2[ptr2] >= nums1[ptr1]) {
+                    nums1[resPtr--] = nums2[ptr2--];
+                } else {
+                    nums1[resPtr--] = nums1[ptr1--];
+                }
             }
         }
-    }
-
-        public static void main(String[] args) {
-        int[] nums1 = {2,0};
-        int[] nums2 = {1};
-        Solution s = new Solution();
-        s.merge(nums1,1,nums2,1);
-            System.out.println(Arrays.toString(nums1));
-            s.tailMerge(nums1,1,nums2,1);
-        System.out.println(Arrays.toString(nums1));
     }
 }

@@ -36,7 +36,7 @@ public class Solution {
             nodeCopy.next = node.next;
             node.next = nodeCopy;
         }
-        // random deepcopy
+        // random deep copy
         for (Node node = head; null != node; node = node.next.next) {
             Node nodeCopy = node.next;
             nodeCopy.random = (node.random == null) ? null : node.random.next;

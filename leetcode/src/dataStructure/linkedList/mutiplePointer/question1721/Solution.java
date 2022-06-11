@@ -1,6 +1,7 @@
-package multiplePointer.linkedList.question1721;
+package dataStructure.linkedList.mutiplePointer.question1721;
 
-import multiplePointer.linkedList.ListNode;
+
+import dataStructure.linkedList.ListNode;
 
 /**
  * @program: Leetcode

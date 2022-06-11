@@ -1,4 +1,4 @@
-package dataStructure.linkedList.question160;
+package dataStructure.linkedList.mutiplePointer.question160;
 
 import dataStructure.linkedList.ListNode;
 
