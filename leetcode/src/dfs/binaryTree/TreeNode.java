@@ -1,7 +1,5 @@
 package dfs.binaryTree;
 
-import dfs.binaryTree.question104.maxDepth;
-
 /**
  * @program: leetcode
  * @description: Tree Node Class
