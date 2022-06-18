@@ -2,6 +2,19 @@
 
 **Depth-first search** (**DFS**) is an [algorithm](https://en.wikipedia.org/wiki/Algorithm) for traversing or searching [tree](https://en.wikipedia.org/wiki/Tree_data_structure) or [graph](https://en.wikipedia.org/wiki/Graph_(data_structure)) data structures. The algorithm starts at the [root node](https://en.wikipedia.org/wiki/Tree_(data_structure)#Terminology) (selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking.
 
+# Case
+
+- Find all satisfied solutions
+- Problems on binary tree
+- Problems on combination
+- Problems on permutation
+
+**Do not use DFS but BFS:**
+
+- Problems on connected block
+- Problems on topological sort
+- All the problems that can be solved by BFS
+
 # Topics
 
 1. The essential factors of recursion in DFS.
@@ -13,5 +26,31 @@
 7. Recognize an implicit graph and perform DFS on it.
 8. Use memorized search and optimize.
 
+# Complexity
 
+Number of solutions * time to figure out a solution
+
+Traversal on tree: $O(n)$
+
+permutation: $O(n!*n)$
+
+combination: $O(2^n*n)$
+
+# Template
+
+```Java
+public ReturnType dfs(argumentList){
+	if(exit of recursion){
+		storeAnswer();
+		return;
+	}
+    for(All disassembly possibilities){
+        modifyArguments();
+        dfs(argumentList);
+        restoreModifiedArguments();
+    }
+    // if necessary
+    return something;
+}
+```
 

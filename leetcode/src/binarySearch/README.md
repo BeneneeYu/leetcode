@@ -1,8 +1,15 @@
-# Scene
+# Case
 
-An input array is sorted.
+- Sort an array, or an array is sorted.
+- Find an algorithm with less time complexity than $O(n)$ (maybe $O(logn)$)
+- Find a split position, elements on the left side of which qualify some conditions, while elements on the right side do not
+- Find a maximum/minimum element to satisfy some condition
 
-The solution should be $O(logn)$ in time complexity.
+# Complexity
+
+Time: $O(logn)$
+
+Space: $O(1)$
 
 # Example
 
@@ -21,41 +28,53 @@ Four situations:
 
 # Range
 
-## left closed, right closed
-
-We assume that the target is in [left, right], while left <= right, the range is valid.
-
-l = 0, r = len - 1
-
-```Java
-while (left <= right) {
-	int middle = (left + right)/2;
-	if (nums[middle] > target) {
-		right = middle - 1; // target in [left, middle - 1]
-	} else if (nums[middle] < target) {
-		left = middle + 1; // target in [middle + 1, right]
-	} else { // nums[middle] == target
-		return middle;
-	}
-}
-	return right + 1;
-```
-
-## left closed, right open
-
-l = 0, r = len
-
 ```java
-while (left < right) {
-	int middle = (left + right)/2;
-	if (nums[middle] > target) {
-		right = middle; // target in [left, middle)
-	} else if (nums[middle] < target) {
-		left = middle + 1; // target in [middle + 1, right)
-	} else { // nums[middle] == target
-		return middle;
-	}
-}
-	return right;
+    //[left, right]
+    public int binarySearchOne(int[] nums, int target) {
+        // handle corner case
+        if (null == nums || nums.length == 0) {
+            return -1;
+        }
+
+        int start = 0, end = nums.length - 1;
+
+        //[start, end]
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+
+    //[left, right)
+    public int binarySearchTwo(int[] nums, int target) {
+        // handle corner case
+        if (null == nums || nums.length == 0) {
+            return -1;
+        }
+
+        int start = 0, end = nums.length;
+
+        // [start, end)
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+        }
+
+        return -1;
+    }
 ```
 

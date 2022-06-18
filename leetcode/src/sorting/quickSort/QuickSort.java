@@ -1,6 +1,7 @@
 package sorting.quickSort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @program: leetcode
@@ -9,40 +10,46 @@ import java.util.Arrays;
  * @create: 2021-03-31 21:04
  **/
 public class QuickSort {
-    public static void main(String[] args) {
-        QuickSort q = new QuickSort();
-        int[] nums = new int[]{1, 3, 222, 4, 12312, 19248, -33, 1213, 4283, 999, 4123, 44, 5, 2123123123, 423, 4123123, 88};
-        q.quickSort(nums, 0, nums.length - 1);
-        System.out.println(Arrays.toString(nums));
-    }
+    private final static Random random = new Random(System.currentTimeMillis());
 
-    public int[] quickSort(int[] nums, int left, int right) {
-        if (left < right){
-            int partitionIndex = partition(nums, left, right);
-            quickSort(nums, left, partitionIndex - 1);
-            quickSort(nums, partitionIndex + 1, right);
-        }
+    public int[] sortArray(int[] nums) {
+        quickSort(nums, 0, nums.length - 1);
         return nums;
     }
 
-    public int partition(int[] nums, int left, int right){
-        int pivot = left;
-        int curIndex = pivot + 1; // elements before curIndex are definitely smaller than nums[pivot]
-        for (int i = curIndex; i <= right; i++) {
-            if (nums[i] < nums[pivot]){
-                swap(nums, i, curIndex);
-                curIndex += 1;
-            }
-        }
-        swap(nums, pivot, curIndex - 1); // select nums[curIndex - 1], which is smaller, to swap, so that nums[curIndex - 1] is a partitionIndex
-        return curIndex - 1;
+    private void quickSort(int[] nums, int left, int right) {
+        if (right <= left) return;
+        int p = partition(nums, left, right);
+        quickSort(nums, left, p - 1);
+        quickSort(nums, p + 1, right);
     }
 
-    // swap
-    public void swap(int[] num, int left, int right) {
-        if (left == right) return;
-        int temp = num[left];
-        num[left] = num[right];
-        num[right] = temp;
+    private int partition(int[] nums, int left, int right) {
+        int randomIndex = left + random.nextInt(right - left + 1); // random int in [left, right]
+        swap(nums, randomIndex, left);
+        int pivot = nums[left];
+        int le = left + 1;
+        int ge = right;
+        while (le <= ge) {
+            while (le <= ge && nums[le] <= pivot) {
+                le += 1;
+            }
+            while (le <= ge && nums[ge] >= pivot) {
+                ge -= 1;
+            }
+            if (le <= ge) {
+                swap(nums, le, ge);
+                le += 1;
+                ge -= 1;
+            }
+        }
+        swap(nums, ge, left);
+        return ge;
+    }
+
+    private void swap(int[] nums, int index1, int index2) {
+        int tmp = nums[index1];
+        nums[index1] = nums[index2];
+        nums[index2] = tmp;
     }
 }
