@@ -12,7 +12,6 @@ public class Solution {
     String s;
     Map<Integer, List<String>> memo = new HashMap<>();
     Set<String> dict;
-
     public List<String> wordBreak(String s, List<String> wordDict) {
         this.s = s;
         dict = new HashSet<>(wordDict); // convert list to set

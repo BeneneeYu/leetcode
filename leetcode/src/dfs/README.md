@@ -47,6 +47,8 @@ public ReturnType dfs(argumentList){
     for(All disassembly possibilities){
         modifyArguments();
         dfs(argumentList);
+        // if necessary
+        return something;
         restoreModifiedArguments();
     }
     // if necessary

@@ -26,13 +26,14 @@ public class Solution {
         int len = str.length();
         if (start == len) return true; // valid until the last char
         if (memo[start] != 0) return memo[start] == 1;
-        for (int i = start + 1; i <= len; i++) {
-            if (dict.contains(str.substring(start, i)) && canBreak(i)) {
+        for (int i = start + 1; i <= len; i++) { // every step is a branch
+            String prefix = str.substring(start, i);
+            if (dict.contains(prefix) && canBreak(i)) { // front and back is valid
                 memo[start] = 1;
                 return true;
             }
         }
         memo[start] = 2;
-        return false;
+        return false; // no matter how to slice, can not break
     }
 }
