@@ -8,7 +8,7 @@ Backpack problem - It generally refers to the problem of how to maximize the val
 
 `N` items and a backpack of volume `V`, volume of item `i` is `v[i]`, value of item `i` is `w[i]`
 
-Find out which items to load so that the total value is the largest.
+Find out which items to load so that the total value is the largest (every item can only be selected once).
 
 ```
 Input: N = 3, V = 4, v = [4,2,3], w = [4,2,3]
@@ -110,9 +110,100 @@ class Solution {
 
 ## Problem Conversion
 
+### Problem 416
 
+Given a **non-empty** array `nums` containing **only positive integers**, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
+
+=> If we can select some elements, the sum of which is half of the sum of all elements in the array?
+
+=> The capacity of backpack is `sum/2`, the value and capacity of every element are its value, if we can  fully backpack?
+
+=> $f[i][j]$ represents considering the first `i` elements, the maximum value less than `j`
+
+=> If $f[n-1][target] == target$, the division is feasible
+
+Think in another way,
+
+$f[j][j]$ represents considering the first i elements, the sum of which is j
+
+=> $f[i-1][j] \or f[i-1][j-nums[i]]$
+
+=> not choosing item `i`, the sum of the first `i-1` elements is `j` or choosing item `i`, the sum of the first `i-1` elements is `j-nums[i]`
 
 # Complete Backpack
+
+`N` items and a backpack of volume `V`, volume of item `i` is `v[i]`, value of item `i` is `w[i]`
+
+Find out which items to load so that the total value is the largest (every item can be selected mutiple times).
+
+```
+Input: N = 2, C = 5, v = [1,2], w = [1,2]
+Output: 5
+解释: 选一件物品 1，再选两件物品 2，可使价值最大。
+```
+
+$dp[i][j]$ refers to considering the first `i` items, the maximum value of a backpack of volume `j`
+
+For $dp[i][j]$, its value should be max of all the possible plans
+
+- Select 0 item `i`, $dp[i-1][j]$
+- Select 1 item `i`, $dp[i-1][j-v[i]] + w[i]$
+- ...
+-  Select k item `i`, $dp[i-1][j- k * v[i]] + k*w[i]$
+
+$dp[i][j] = max(dp[i-1][j], dp[i][j-v[i]] + w[i])$
+
+We should do traversal from small index to large index.
+
+## dp N C+1
+
+```java
+class Solution {
+    public int maxValue(int N, int C, int[] v, int[] w) {
+        int[][] dp = new int[N][C + 1]; // dp[i][j]: the maximum value of the first elements held in volume j
+        for (int j = 0; j <= C; j++) {
+            int maxK = j / v[0];
+            dp[0][j] = maxK * w[0];
+        }
+        // try the remaining items
+        for (int i = 1; i < N; i++) {
+            for (int j = 0; j <= C; j++) {
+                int n = dp[i - 1][j];
+                int y = 0;
+                // try out selecting different numbers of item i
+                for (int k = 1 ;; k++) { 
+                    if (j < v[i] * k) {
+                        break;
+                    }
+                    y = Math.max(y, dp[i - 1][j - k * v[i]] + k * w[i]);
+                }
+                dp[i][j] = Math.max(n, y);
+            }
+        }
+        return dp[N - 1][C];
+    }
+}
+```
+
+
+
+## dp C+1
+
+```java
+class Solution {
+    public int maxValue(int N, int C, int[] v, int[] w) {
+        int[] dp = new int[C + 1];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j <= C; j++) {
+                int n = dp[j];
+                int y = j - v[i] >= 0 ? dp[j - v[i]] + w[i] : 0; 
+                dp[j] = Math.max(n, y);
+            }
+        }
+        return dp[C];
+    }
+}
+```
 
 322: 完全背包最小值
 
