@@ -24,16 +24,6 @@ public class Solution {
             }
             map.put(sum, map.getOrDefault(sum, 0) + 1);
         }
-//        for (Integer integer : map.keySet()) {
-//            System.out.println(integer + " " + map.get(integer));
-//
-//        }
         return cnt;
-    }
-
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        int[] testCase = new int[]{1,2,3};
-        System.out.println(s.subarraySum(testCase,3));
     }
 }

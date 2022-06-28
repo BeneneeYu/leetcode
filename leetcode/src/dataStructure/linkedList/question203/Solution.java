@@ -25,19 +25,4 @@ public class Solution {
         }
         return dummyHead.next;
     }
-
-    private void printList(ListNode head){
-        StringBuilder sb = new StringBuilder();
-        while (null != head){
-            sb.append(head.val).append("->");
-            head = head.next;
-        }
-        System.out.println(sb.toString());
-    }
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        ListNode listNode = new ListNode(7);
-        listNode.next = new ListNode(7);
-        s.printList(s.removeElements(listNode,7));
-    }
 }

@@ -9,42 +9,29 @@ import java.util.*;
  * @create: 2022-05-12 10:06
  **/
 public class Solution {
-    public List<List<Integer>> result = new ArrayList<>();
-
     public List<List<Integer>> permuteUnique(int[] nums) {
-        HashMap<Integer, Integer> counter = new HashMap<>();
-        for (int num : nums) {
-            counter.put(num, counter.getOrDefault(num, 0) + 1);
-        }
-        LinkedList<Integer> combination = new LinkedList<>();
-        Integer n = nums.length;
-        backtrack(combination, n, counter);
-        return result;
+        List<List<Integer>> list = new ArrayList<>();
+        Arrays.sort(nums);
+        backtrack(list, new ArrayList<>(), nums, new boolean[nums.length]);
+        return list;
     }
 
-    private void backtrack(LinkedList<Integer> combination, Integer n, HashMap<Integer, Integer> counter) {
-        if (combination.size() == n) {
-            // deep copy cause the permutation will be backtracked
-            result.add(new ArrayList<>(combination));
-            return;
-        }
-        for (Map.Entry<Integer, Integer> entry : counter.entrySet()) {
-            Integer num = entry.getKey();
-            Integer times = entry.getValue();
-            if (times == 0) {
-                continue;
+    private void backtrack(List<List<Integer>> list, List<Integer> tempList, int[] nums, boolean[] used) {
+        if (tempList.size() == nums.length) {
+            list.add(new ArrayList<>(tempList));
+        } else {
+            // return all the permutations, traverse from 0
+            for (int i = 0; i < nums.length; i++) {
+                // if a number is used or duplicated, continue to next round
+                if (used[i] || i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) continue;
+                used[i] = true;
+                tempList.add(nums[i]);
+                // use it now and go on
+                backtrack(list, tempList, nums, used);
+                // not use nums[i] now but afterwards
+                used[i] = false;
+                tempList.remove(tempList.size() - 1);
             }
-
-            // added into current
-            combination.addLast(num);
-            counter.put(num, times - 1);
-
-            // exploring
-            backtrack(combination, n, counter);
-
-            // revert the choice for the next exploration
-            combination.removeLast();
-            counter.put(num, times);
         }
     }
 }

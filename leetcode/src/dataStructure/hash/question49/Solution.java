@@ -22,8 +22,8 @@ public class Solution {
             }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < times.length; i++) {
-                if (times[i] != 0){
-                    sb.append((char)(i + 'a'));
+                if (times[i] != 0) {
+                    sb.append((char) (i + 'a'));
                     sb.append(times[i]);
                 }
             }

@@ -85,6 +85,7 @@ Subsets II (contains duplicates) : https://leetcode.com/problems/subsets-ii/
 ```java
 public List<List<Integer>> subsetsWithDup(int[] nums) {
     List<List<Integer>> list = new ArrayList<>();
+    Arrays.sort(nums);
     backtrack(list, new ArrayList<>(), nums, 0);
     return list;
 }
@@ -92,10 +93,10 @@ public List<List<Integer>> subsetsWithDup(int[] nums) {
 private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums, int start){
     list.add(new ArrayList<>(tempList));
     for(int i = start; i < nums.length; i++){
-        if(i > start && nums[i] == nums[i-1]) continue; // skip duplicates
+        if(i > start && nums[i] == nums[i-1]) continue; // skip duplicates, e.g. [1,2,2], or else there will be two [1,2]
         tempList.add(nums[i]);
-        backtrack(list, tempList, nums, i + 1);
-        tempList.remove(tempList.size() - 1);
+        backtrack(list, tempList, nums, i + 1); // select this element, construct the rest part
+        tempList.remove(tempList.size() - 1); // traverse into next round, not selecting this element
     }
 } 
 ```
@@ -149,6 +150,14 @@ private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] 
     }
 }
 ```
+
+use `!use[i - 1]` for efficiency.
+
+`if (i > 0 && nums[i] == nums[i - 1] && !use[i - 1]) continue;` means, in other words, `if previous identical number is used, then use the current number`.
+
+because if you use the opposite way, `if (i > 0 && nums[i] == nums[i - 1] && use[i - 1]) continue;` which means `if previous identical number is NOT used, use this number`, you are going to have to keep running the program until the next identical number first populates the `temp/list` array before the previous identical number, and then you backtrack into the first identical number which then populates the `temp/list` array.
+That one is using `if (i > 0 && nums[i] == nums[i - 1] && use[i - 1]) continue;`. You will see that the `result` array really starts to populate near the end of `for` loop when `i = 2`.
+In contrast, the first picture using `if (i > 0 && nums[i] == nums[i - 1] && !use[i - 1]) continue;` shows that the `result` array starts populating in the beginning.
 
 Combination Sum : https://leetcode.com/problems/combination-sum/
 
@@ -209,13 +218,13 @@ public List<List<String>> partition(String s) {
 
 public void backtrack(List<List<String>> list, List<String> tempList, String s, int start){
    if(start == s.length())
-      list.add(new ArrayList<>(tempList));
+      list.add(new ArrayList<>(tempList)); // pointer reaches, valid split
    else{
       for(int i = start; i < s.length(); i++){
          if(isPalindrome(s, start, i)){
             tempList.add(s.substring(start, i + 1));
-            backtrack(list, tempList, s, i + 1);
-            tempList.remove(tempList.size() - 1);
+            backtrack(list, tempList, s, i + 1); // split here
+            tempList.remove(tempList.size() - 1); // not split here
          }
       }
    }
