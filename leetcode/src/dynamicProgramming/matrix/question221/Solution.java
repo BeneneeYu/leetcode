@@ -13,6 +13,7 @@ public class Solution {
     // dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1;
     // fix dp[i][j] and consider all the three other squares
     // and fix the min value of three squares and consider dp[i][j]
+    // when it comes to number of small squares, it is the sum of dp[i][j]
     public int maximalSquare(char[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;

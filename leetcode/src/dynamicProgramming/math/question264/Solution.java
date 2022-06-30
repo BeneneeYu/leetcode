@@ -2,82 +2,36 @@ package dynamicProgramming.math.question264;
 
 import java.util.Arrays;
 
-/*
-给你一个整数 n ，请你找出并返回第 n 个 丑数 。
-
-丑数 就是只包含质因数2,3,5的正整数。
-
-
-示例 1：
-
-输入：n = 10
-输出：12
-解释：[1, 2, 3, 4, 5, 6, 8, 9, 10, 12] 是由前 10 个丑数组成的序列。
-
-
- */
+/**
+ * @program: Leetcode
+ * @description: An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
+ * Given an integer n, return the nth ugly number.
+ * @author: Shen Zhengyu
+ * @create: 2022-06-30 15:48
+ **/
 public class Solution {
-  public int nthUglyNumber(int n) {
-    int[] dp = new int[n+1];
-    dp[0] = 1;
-    int p2 = 0;
-    int p3 = 0;
-    int p5 = 0;
-    /*
-    三个指针p2，p3，p5，实际上pi的含义是有资格同i相乘的最小丑数的位置。
-    这里资格指的是：如果一个丑数nums[pi]通过乘以i可以得到下一个丑数，那么这个丑数nums[pi]就永远失去了同i相乘的资格
-    （没有必要再乘了），我们把pi++让nums[pi]指向下一个丑数即可。
-    第一位是1
-    比较 1*2 1*3 1*5 1,2
-    比较 2*2 1*3 1*5 1,2,3
-    比较 2*2 2*3 1*5 1,2,3,4
-    比较 3*2 2*3 1*5 1,2,3,4,5
-    比较 3*2 2*3 2*5 1,2,3,4,5,6
-    比较 4*2 3*3 2*5 1,2,3,4,5,6,8
-    比较 5*2 3*3 2*5 1,2,3,4,5,6,8,9
-    比较 5*2 4*3 2*5 1,2,3,4,5,6,8,9,10
-    比较 6*2 4*3 3*5 1,2,3,4,5,6,8,9,10,12
-    比较 8*2 5*3 3*5 1,2,3,4,5,6,8,9,10,12,15
-    比较 8*2 6*3 4*5 1,2,3,4,5,6,8,9,10,12,15,16
-    可以见得，对于2，3，5维护一个指针,表示用了相乘它并参与比较的丑数数字下标
-    一开始都是0,是因为都只能和dp[0]=1相乘作比较
-    当2*1之后,2用来比较的必须是2*dp[1]=2*2
-     */
-    for (int i = 1; i <= n; i++) {
-      dp[i] = Math.min(2*dp[p2],Math.min(3*dp[p3],5*dp[p5]));
-      if (dp[p2]*2 == dp[i]){
-        p2++;
-      }
-      if (3*dp[p3] == dp[i]){
-        p3++;
-      }
-      if (5*dp[p5] == dp[i]){
-        p5++;
-      }
+    public int nthUglyNumber(int n) {
+        // Define three pointers, indicating that the next ugly number is the ugly number pointed to by the current pointer multiplied by the corresponding prime factor
+        int[] pos = {0, 0, 0}; // 2,3,5
+        int[] multiplier = {2, 3, 5};
+        int[] dp = new int[n];
+        int[] tmp = new int[3];
+        dp[0] = 1;
+        int completePos = 1;
+        while (completePos < n) {
+            int nextUgly = Integer.MAX_VALUE;
+            for (int j = 0; j < multiplier.length; j++) {
+                int nextUglyCandidate = multiplier[j] * dp[pos[j]];
+                tmp[j] = nextUglyCandidate;
+                nextUgly = Math.min(nextUgly, nextUglyCandidate);
+            }
+            for (int j = 0; j < multiplier.length; j++) {
+                if (tmp[j] == nextUgly) {
+                    pos[j] += 1;
+                }
+            }
+            dp[completePos++] = nextUgly;
+        }
+        return dp[n - 1];
     }
-    /*
-    这段代码两个关键点，
-
-    第一个是每次对计算出三个丑数并取最小，这里需要计算三个丑数，一定有两个丑数是在上一次中就已经被计算并比较过的，
-    因为较大所以被筛掉了两个（这两个进入下次比较中），留下较小的那个，并自增一次最小值的下标i，
-    使得参与下次计算时能稍微增大，并同该次比较中淘汰的两个稍大数比较，经过这样的不断比较+迭代，
-    能保证结果集是按从小到大的（此处结果集理论是有重复值，但实际没有）
-
-    第二个关键点在于自增每次的最小丑数值的下标，这么做一是可以迭代避免重复计算，从而避免出现重复值，
-    二是避免遗漏。因为按照最直接的理解与解法，每个数都需分别*2，*3，*5加入数组，历经n次，最后再排序，
-    但通过设置三个从0开始的下标，使其对应的值分别只与2或3或5相乘，而每个下标都有机会迭代，
-    这样可以保证数组中的每个数实际都是分别与2、3、5乘一次，数组中的前四个数是1,2,3,4，
-    后面的数都是由前面的数分别与2、3、5相乘计算出来的，这样也满足了丑数的定义，
-    并且每次计算的数都是先排序再加入的，如此可以避免不漏且排序。
-    而不重是通过三个if判断解决的，因为假如一个数既可通过*2得到又可以通过*3得到，
-    此时必然会重复计算并重复加入到数组，因此此时需要既迭代2对应的下标p2，也迭代3对应的下标p3，
-    所以if如果换成if-else,必然会有大量重复值出现
-     */
-    System.out.println(Arrays.toString(dp));
-    return dp[n-1];
-  }
-  public static void main(String[] args) {
-    Solution s = new Solution();
-    System.out.println(s.nthUglyNumber(10));
-  }
 }
