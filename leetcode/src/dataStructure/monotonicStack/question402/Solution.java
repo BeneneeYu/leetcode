@@ -1,4 +1,4 @@
-package dynamicProgramming.greedy.question402;
+package dataStructure.monotonicStack.question402;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -11,30 +11,31 @@ import java.util.LinkedList;
  **/
 public class Solution {
     public String removeKdigits(String num, int k) {
-        Deque<Character> deque = new LinkedList<Character>();
+        // use mono-increasing stack.
+        Deque<Character> monotonicStack = new LinkedList<>();
         int len = num.length();
         char[] chars = num.toCharArray();
         for (int i = 0; i < len; i++) {
             char digit = chars[i];
-            while (!(deque.isEmpty()) && k > 0 && deque.peekLast() > digit) { // we can do deletion
-                deque.pollLast();
+            while (!(monotonicStack.isEmpty()) && k > 0 && digit < monotonicStack.peekLast()) {
+                monotonicStack.pollLast();
                 k -= 1;
             }
-            deque.offerLast(digit);
+            monotonicStack.offerLast(digit);
         }
-        if (k > 0) { // deletion is not enough
+        if (k > 0) {
             for (int i = 0; i < k; i++) {
-                deque.pollLast();
+                monotonicStack.pollLast();
             }
         }
         StringBuilder result = new StringBuilder();
-        boolean isLeadingZeroSkipped = false;
-        while (!deque.isEmpty()) {
-            char digit = deque.pollFirst();
-            if (!(isLeadingZeroSkipped) && digit == '0') {
+        boolean skippedZero = false;
+        while (!monotonicStack.isEmpty()) {
+            char digit = monotonicStack.pollFirst();
+            if (!skippedZero && digit == '0') {
                 continue;
             }
-            isLeadingZeroSkipped = true;
+            skippedZero = true;
             result.append(digit);
         }
         return result.length() == 0 ? "0" : result.toString();

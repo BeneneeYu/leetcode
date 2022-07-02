@@ -13,6 +13,7 @@ public class Solution {
 
     public int totalNQueens(int n) {
         cnt = 0;
+        // create exits of backtrack, figure out condition
         Set<Integer> column = new HashSet<>();
         Set<Integer> diag1 = new HashSet<>();
         Set<Integer> diag2 = new HashSet<>();
