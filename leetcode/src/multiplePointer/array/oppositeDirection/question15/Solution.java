@@ -17,13 +17,14 @@ public class Solution {
         int len = nums.length;
         Arrays.sort(nums);
         for (int i = 0; i < len; i++) {
+            // same triplets have been tried
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
             int k = len - 1;
             int target = -nums[i]; // nums[j] + nums[k] == target
             for (int j = i + 1; j < len; j++) {
-                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) { // can't skip j == i + 1 cause there is no duplications now
                     continue;
                 }
                 // this while loop breaks when (i,j,k) is a possible answer
