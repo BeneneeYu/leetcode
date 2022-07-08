@@ -19,23 +19,13 @@ public class Solution {
     }
 
     public boolean canJump2(int[] nums) {
-        int n = nums.length;
-        int rightmost = 0;
-        for (int i = 0; i < n; ++i) {
-            if (i <= rightmost) {
-                rightmost = Math.max(rightmost, i + nums[i]);
-                if (rightmost >= n - 1) {
-                    return true;
-                }
-            }
+        int len = nums.length;
+        int rightMost = 0;
+        for (int i = 0; i < len; i++) {
+            if (i > rightMost) break; // actually the position can not be reached
+            rightMost = Math.max(rightMost, nums[i] + i); // expand
+            if (rightMost >= len - 1) return true; // can reach termination
         }
         return false;
-    }
-
-
-    public static void main(String[] args) {
-        int[] nums = {3, 2, 1, 0, 4};
-        Solution s = new Solution();
-        System.out.println(s.canJump(nums));
     }
 }
