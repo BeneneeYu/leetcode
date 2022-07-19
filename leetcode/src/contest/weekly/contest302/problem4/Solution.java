@@ -11,22 +11,19 @@ import java.util.HashSet;
  * @create: 2022-07-17 11:35
  **/
 public class Solution {
-    public int minOperations(int[] nums, int[] numsDivide) {
-        Arrays.sort(nums);
-        Arrays.sort(numsDivide);
-        a:
-        for (int i = 0; i < nums.length; i++) {
-            int num = nums[i];
-            for (int j = 0; j < i; j++) {
-                if (num % nums[j] == 0) continue a;
+    public int minOperations(int[] A, int[] numsDivide) {
+        int g = numsDivide[0], tmp;
+        for (int a : numsDivide) {
+            while (a > 0) { // g = gcd(g, a)
+                tmp = g % a;
+                g = a;
+                a = tmp;
             }
-            for (int j : numsDivide) {
-                if (j % num != 0) {
-                    continue a;
-                }
-            }
-            return i;
         }
+        Arrays.sort(A);
+        for (int i = 0; i < A.length && A[i] <= g; ++i)
+            if (g % A[i] == 0)
+                return i;
         return -1;
     }
 }

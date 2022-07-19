@@ -60,7 +60,9 @@ public ReturnType dfs(argumentList){
 
 During the process, if it finds that the path it tries out will not be a solution, it returns and restore the global variable, while DFS traverse the entire search space.
 
-Subsets : https://leetcode.com/problems/subsets/
+## Subsets
+
+https://leetcode.com/problems/subsets/
 
 ```java
 public List<List<Integer>> subsets(int[] nums) {
@@ -80,7 +82,11 @@ private void backtrack(List<List<Integer>> list , List<Integer> tempList, int []
 }
 ```
 
-Subsets II (contains duplicates) : https://leetcode.com/problems/subsets-ii/
+## Subsets II
+
+contains duplicates
+
+https://leetcode.com/problems/subsets-ii/
 
 ```java
 public List<List<Integer>> subsetsWithDup(int[] nums) {
@@ -101,7 +107,39 @@ private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] 
 } 
 ```
 
-Permutations : https://leetcode.com/problems/permutations/
+## Combinations
+
+https://leetcode.com/problems/combinations/
+
+```java
+public class Solution {
+    List<List<Integer>> res;
+    List<Integer> path;
+
+    public List<List<Integer>> combine(int n, int k) {
+        res = new ArrayList<>();
+        path = new ArrayList<>();
+        dfs(1, n, k);
+        return res;
+    }
+
+    private void dfs(int start, int n, int k) {
+        if (path.size() + n - start + 1 < k) return;
+        if (path.size() == k) {
+            res.add(new ArrayList<>(path));
+            return;
+        }
+        path.add(start);
+        dfs(start + 1, n, k);
+        path.remove(path.size() - 1);
+        dfs(start + 1, n, k);
+    }
+}
+```
+
+## Permutations
+
+https://leetcode.com/problems/permutations/
 
 ```java
 public List<List<Integer>> permute(int[] nums) {
@@ -125,7 +163,11 @@ private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] 
 } 
 ```
 
-Permutations II (contains duplicates) : https://leetcode.com/problems/permutations-ii/
+## Permutations II 
+
+contains duplicates
+
+https://leetcode.com/problems/permutations-ii/
 
 ```java
 public List<List<Integer>> permuteUnique(int[] nums) {
@@ -159,7 +201,9 @@ because if you use the opposite way, `if (i > 0 && nums[i] == nums[i - 1] && use
 That one is using `if (i > 0 && nums[i] == nums[i - 1] && use[i - 1]) continue;`. You will see that the `result` array really starts to populate near the end of `for` loop when `i = 2`.
 In contrast, the first picture using `if (i > 0 && nums[i] == nums[i - 1] && !use[i - 1]) continue;` shows that the `result` array starts populating in the beginning.
 
-Combination Sum : https://leetcode.com/problems/combination-sum/
+## Combination Sum
+
+https://leetcode.com/problems/combination-sum/
 
 ```java
 public List<List<Integer>> combinationSum(int[] nums, int target) {
@@ -182,7 +226,11 @@ private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] 
 }
 ```
 
-Combination Sum II (can't reuse same element) : https://leetcode.com/problems/combination-sum-ii/
+## Combination Sum II
+
+can't reuse same element
+
+https://leetcode.com/problems/combination-sum-ii/
 
 ```java
 public List<List<Integer>> combinationSum2(int[] nums, int target) {
@@ -207,7 +255,9 @@ private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] 
 } 
 ```
 
-Palindrome Partitioning : https://leetcode.com/problems/palindrome-partitioning/
+## Palindrome Partitioning
+
+https://leetcode.com/problems/palindrome-partitioning/
 
 ```java
 public List<List<String>> partition(String s) {
