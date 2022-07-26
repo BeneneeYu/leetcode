@@ -12,22 +12,13 @@ import java.util.*;
 public class FoodRatings {
     class Food {
         String name;
-        String cuisines;
+        String cuisine;
         int rating;
 
         Food(String n, String c, int r) {
             this.name = n;
-            this.cuisines = c;
+            this.cuisine = c;
             this.rating = r;
-        }
-
-        @Override
-        public String toString() {
-            return "Food{" +
-                    "name='" + name + '\'' +
-                    ", cuisines='" + cuisines + '\'' +
-                    ", rating=" + rating +
-                    '}';
         }
     }
 
@@ -58,28 +49,17 @@ public class FoodRatings {
 
     public void changeRating(String food, int newRating) {
 
-        Food tmp = foodsMap.get(food);
-        Food newFood = new Food(food, tmp.cuisines, newRating);
-        foodsMap.put(food, newFood);
-        PriorityQueue<Food> pq = cuisineFoods.get(tmp.cuisines);
-        pq.offer(newFood);
+        Food curr = foodsMap.get(food);
+        PriorityQueue<Food> pq = cuisineFoods.get(curr.cuisine);
+        pq.remove(curr);
+        curr.rating = newRating;
+
+        pq.offer(curr);
 
     }
 
     public String highestRated(String cuisine) {
-        PriorityQueue<Food> pq = cuisineFoods.get(cuisine);
-        System.out.println(cuisine);
-        for (Food value : pq) {
-            System.out.println(value);
-        }
-        while (true) {
-            Food f = pq.peek();
-            if (f.rating != foodsMap.get(f.name).rating) {
-                pq.poll();
-            } else {
-                return f.name;
-            }
-        }
+        return cuisineFoods.get(cuisine).peek().name;
     }
 
 }
