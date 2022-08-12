@@ -12,17 +12,18 @@ import java.util.HashSet;
  * @create: 2022-07-08 17:19
  **/
 public class Solution2 {
-    HashMap<Integer, TreeNode> parent;
+    HashMap<Integer, TreeNode> parent = new HashMap<>();
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        parent = new HashMap<>();
         dfs(root);
         HashSet<Integer> visited = new HashSet<>();
-        while (null != p) {
+        // from bottom to top
+        while (p != null) {
             visited.add(p.val);
             p = parent.get(p.val);
         }
-        while (null != q) {
+        // the first encountered node is lca
+        while (q != null) {
             if (visited.contains(q.val)) {
                 return q;
             }
@@ -31,14 +32,15 @@ public class Solution2 {
         return root;
     }
 
-    private void dfs(TreeNode node) {
-        if (node.left != null) {
-            parent.put(node.left.val, node);
-            dfs(node.left);
+    // get all the node-parent relationship
+    private void dfs(TreeNode root) {
+        if (root.left != null) {
+            parent.put(root.left.val, root);
+            dfs(root.left);
         }
-        if (node.right != null) {
-            parent.put(node.right.val, node);
-            dfs(node.right);
+        if (root.right != null) {
+            parent.put(root.right.val, root);
+            dfs(root.right);
         }
     }
 }
