@@ -60,7 +60,8 @@ public class Codec {
 
     public static void main(String[] args) {
         Codec codec = new Codec();
-        codec.encode("www.google.com");
+        System.out.println(codec.encode("www.google.com"));
+        System.out.println(codec.decode(codec.encode("www.google.com")));
     }
 }
 /*
