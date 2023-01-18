@@ -13,20 +13,23 @@ import java.util.List;
  **/
 public class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
-        int left = newInterval[0], right = newInterval[1], n = intervals.length, index = 0;
-        ArrayList<int[]> intervalsList = new ArrayList<>();
-        while (index < n && intervals[index][1] < left) {
-            intervalsList.add(intervals[index++]);
+        int nl = newInterval[0];
+        int nr = newInterval[1];
+        int len = intervals.length;
+        int j = 0;
+        List<int[]> res = new ArrayList<>();
+        while (j < len && nl > intervals[j][1]) res.add(intervals[j++]);
+        // when the code reaches here, the left is in an interval
+        // try to expand the right
+        while (j < len && nr >= intervals[j][0]) {
+            nl = Math.min(nl, intervals[j][0]);
+            nr = Math.max(nr, intervals[j++][1]);
         }
-        while (index < n && intervals[index][0] <= right) {
-            left = Math.min(intervals[index][0], left);
-            right = Math.max(intervals[index][1], right);
-            index += 1;
+        // expansion is done
+        res.add(new int[]{nl, nr});
+        while (j < len) {
+            res.add(intervals[j++]);
         }
-        intervalsList.add(new int[]{left, right});
-        while (index < n) {
-            intervalsList.add(intervals[index++]);
-        }
-        return intervalsList.toArray(new int[intervalsList.size()][]);
+        return res.toArray(new int[res.size()][]);
     }
 }
