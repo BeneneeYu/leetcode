@@ -1,63 +1,53 @@
 package dfs.backtrack.question93;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-/**
- * @program: Leetcode
- * @description:
- * @author: Shen Zhengyu
- * @create: 2022-07-06 16:19
- **/
-public class Solution {
-    List<String> res;
+class Solution {
+    private List<String> result;
+    int len;
 
     public List<String> restoreIpAddresses(String s) {
-        res = new ArrayList<>();
-        if (s.length() > 12 || s.length() < 4) return res;
-        List<String> subIPs = new ArrayList<>();
-        dfs(s, subIPs, 0);
-        return res;
+        len = s.length();
+        result = new ArrayList<>();
+        if (len < 4 || len > 12){
+            return result;
+        }
+        helper(new ArrayList<>(), s, 0);
+        return result;
     }
 
-    private void dfs(String s, List<String> subIPs, int lastSplit) {
+    private void helper(List<String> subIPs, String s, int lastSplit) {
         if (subIPs.size() == 4) {
-            if (lastSplit == s.length()) {
-                StringBuilder sb = new StringBuilder(subIPs.get(0));
-                for (int i = 1; i < subIPs.size(); i++) {
-                    sb.append(".").append(subIPs.get(i));
-                }
-                res.add(sb.toString());
-                return;
+            if (lastSplit == len) {
+                result.add(String.join(".", subIPs.stream().toList()));
             }
         }
         int subIPsNum = subIPs.size();
-
-        for (int i = lastSplit + 1; i < Math.min(s.length() + 1, lastSplit + 4); i++) {
+        // !important: len + 1 but not len
+        for(int i = lastSplit + 1; i < Math.min(len + 1, lastSplit + 4); i++){
             if (i + (3 - subIPsNum) * 3 < s.length()) continue;
             String subIP = s.substring(lastSplit, i);
-            if (hasLeadingZero(subIP) || !inRange(subIP)) {
+            if (hasLeadingZero(subIP) || !inRange(subIP)){
                 break;
-            } else {
+            }else {
                 subIPs.add(subIP);
-                dfs(s, subIPs, i);
+                helper(subIPs, s, i);
                 subIPs.remove(subIPs.size() - 1);
             }
         }
-
     }
 
-    private boolean hasLeadingZero(String s) {
-        if (s.charAt(0) != '0' || s.length() == 1) {
-            return false;
-        } else {
-            return true;
-        }
+    private boolean hasLeadingZero(String num) {
+        return num.length() != 1 && num.charAt(0) == '0';
     }
 
-    private boolean inRange(String s) {
-        int myInt = Integer.parseInt(s);
-        return myInt >= 0 && myInt <= 255;
+    private boolean inRange(String num) {
+        return Integer.parseInt(num) >= 0 && Integer.parseInt(num) <= 255;
+    }
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        System.out.println(Arrays.toString(s.restoreIpAddresses("25525511135").toArray()));
     }
 }
-
